@@ -1,0 +1,62 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    background: rgb(42, 97, 194);
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: white;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: white;
+}
+
+#start{
+    margin-top: 20px;
+    margin-inline-start: 80rem;
+    
+}
+.container {
+    display: flex;
+    flex-direction:column;
+    text-align: center;
+    margin: auto;
+}
+
+.memory-game{
+    width: 740px;
+    height: 740px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.memory-card{
+width: calc(25% - 1px); /* referenced stack overflow and YT videos for the css calc property */
+height: calc(25% - 7px); /* referenced stack overflow and YT videos for the css calc property */
+position: relative;
+display: flex;
+flex-direction: column;
+}
+
+.front-display, .flip-display{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    padding: 18px;
+    border-radius: 5px;
+} 
+
+#reset{
+    width: 50px;
+    margin: auto;
+}
