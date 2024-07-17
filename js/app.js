@@ -2,18 +2,17 @@
 
 //DECLARE board as an array
 //DECLARE turn as string
-//DECLARE moves as integer
+//DECLARE attempts as integer
 //DECLARE matchedPairs as integer
 //DECLARE IMAGES as array of NBA player images
-//DECLARE board as an array
 //DECLARE TOTAL_PAIRS as integer equal to the number of pairs needed
 
 //Cache DOM elements:
 
 //DECLARE startButton
 //DECLARE resetButton
-//DECLARE messageEl
-//DECLARE moveCounterEl
+//DECLARE attemptsMessageEl
+//DECLARE attemptsCountEl
 //DECLARE gameBoardEl
 //DECLARE cardEl
 
@@ -51,10 +50,38 @@
 /*-------------------------------- Constants --------------------------------*/
 
 /*---------------------------- Variables (state) ----------------------------*/
-
+let board = [];
+let attempts = 0;
+let matchedPairs = 0;
+let firstCard = null;
+let secondCard = null;
+let totalPairs = 2;
 /*------------------------ Cached Element References ------------------------*/
-
+const startBtn = document.querySelector("#start");
+const resetBtn = document.querySelector("#reset");
+const attemptsMessageEl = document.querySelector("#attempts");
+const attemptsCountEl = document.querySelector("#attempts-count");
+const gameBoardEl = document.querySelector(".memory-game");
+const cardEl = document.querySelectorAll(".memory-card"); 
+const frontDisplay = document.querySelectorAll(".front-display");
+const flipDisplay = document.querySelectorAll(".flip-display")
 /*-------------------------------- Functions --------------------------------*/
+// function init(){
+//     board = 
+// }
 
+// function render(){
+
+// }
+
+// function handleClick(){
+
+// }
+
+// function randomShuffle(){
+
+// }
 /*----------------------------- Event Listeners -----------------------------*/
-
+cardEl.forEach((img)=>{
+    img.addEventListener("click", handleClick)
+})
