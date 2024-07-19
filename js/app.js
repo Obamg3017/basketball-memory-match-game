@@ -52,36 +52,55 @@
 /*---------------------------- Variables (state) ----------------------------*/
 let board = [];
 let attempts = 0;
-let matchedPairs = 0;
-let firstCard = null;
-let secondCard = null;
-let totalPairs = 2;
+let flippedCard = false;
+let firstCard 
+let secondCard 
 /*------------------------ Cached Element References ------------------------*/
 const startBtn = document.querySelector("#start");
 const resetBtn = document.querySelector("#reset");
 const attemptsMessageEl = document.querySelector("#attempts");
 const attemptsCountEl = document.querySelector("#attempts-count");
 const gameBoardEl = document.querySelector(".memory-game");
-const cardEl = document.querySelectorAll(".memory-card"); 
+const cardsEl = document.querySelectorAll(".memory-card"); 
 const frontDisplay = document.querySelectorAll(".front-display");
-const flipDisplay = document.querySelectorAll(".flip-display")
+const flipDisplay = document.querySelectorAll(".back-display")
 /*-------------------------------- Functions --------------------------------*/
-// function init(){
-//     board = 
-// }
+function flipCard(){
+this.classList.add('flip');
 
-// function render(){
+if(!flippedCard){
+    flippedCard = true;
+    firstCard = this;
+}else{
+    flippedCard = false;
+    secondCard = this;
 
-// }
+    checkForMatchedPairs();
+}
+}
 
-// function handleClick(){
+function checkForMatchedPairs(){
+if (firstCard.dataset.players === secondCard.dataset.players) {
+  firstCard.removeEventListener("click", flipCard);
+  secondCard.removeEventListener("click", flipCard);
+  disableCards()
+} else {
+  unflippedCards()
+}
+}
 
-// }
+function disableCards(){
+  firstCard.removeEventListener("click", flipCard);
+  secondCard.removeEventListener("click", flipCard);
+}
 
-// function randomShuffle(){
-
-// }
+function unflippedCards(){   
+setTimeout(function () {
+  firstCard.classList.remove("flip");
+  secondCard.classList.remove("flip");
+}, 1700);
+}
 /*----------------------------- Event Listeners -----------------------------*/
-cardEl.forEach((img)=>{
-    img.addEventListener("click", handleClick)
+cardsEl.forEach((card)=>{
+    card.addEventListener("click", flipCard)
 })
