@@ -50,6 +50,7 @@
 /*-------------------------------- Constants --------------------------------*/
 
 /*---------------------------- Variables (state) ----------------------------*/
+let score = 0;
 let attempts = 0;
 let lockBoard = false;
 let flippedCard = false;
@@ -64,6 +65,7 @@ const gameBoardEl = document.querySelector(".memory-game");
 const cardsEl = document.querySelectorAll(".memory-card");
 const frontDisplay = document.querySelectorAll(".front-display");
 const backDisplay = document.querySelectorAll(".back-display");
+const winScore = document.querySelector("#win-score");
 /*-------------------------------- Functions --------------------------------*/
 function flipCard() {
   if (lockBoard) {
@@ -87,11 +89,18 @@ function flipCard() {
 
 function checkForMatchedPairs() {
   if (firstCard.dataset.players === secondCard.dataset.players) {
-    firstCard.removeEventListener("click", flipCard);
-    secondCard.removeEventListener("click", flipCard);
-    disableCards();
+   checkWin()
   } else {
     unflippedCards();
+    attempts++
+    attemptsCountEl.textContent = attempts;
+    if(attempts > 15){
+      attemptsMessageEl.textContent = "You Lose!!!!"
+      attemptsMessageEl.style.fontSize = "40px"
+       cardsEl.forEach((card) => {
+         card.removeEventListener("click", flipCard);
+       });
+    }
   }
 }
 
@@ -125,11 +134,29 @@ function shuffle() {
     card.style.order = shuffledDeck;
   });
 }
+
+function resetGame(){
+  location.reload()
+}
+
+function checkWin(){
+if (firstCard.dataset.players === secondCard.dataset.players) {
+  firstCard.removeEventListener("click", flipCard);
+  secondCard.removeEventListener("click", flipCard);
+  score++;
+  if (score === 8) {
+    winScore.textContent = "You Win!!!!";
+    winScore.style.fontSize = "40px";
+  }
+}
+}
+
 /*----------------------------- Event Listeners -----------------------------*/
 cardsEl.forEach((card) => {
   card.addEventListener("click", flipCard);
 });
 
-resetBtn.addEventListener("click", shuffle);
+
+resetBtn.addEventListener("click", resetGame);
 
 shuffle();

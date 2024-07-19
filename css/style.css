@@ -7,15 +7,19 @@
 body{
     height: 100vh;
     display: flex;
-    background-image: url("/assets/BackgroundImg.png");
+    background-image: url("/assets/NBA-Logo.webp");
     /* background: rgb(42, 97, 194); */
+    background-position: center;
+
 }
 
 
 
 h1 {
-    margin-bottom: 20px;
-    color: white;
+    margin-bottom: 10px;
+    color: rgba(205, 164, 0, 0.679);
+    font-weight: 80px;
+    font-size: 55px;
 }
 
 h2 {
@@ -79,4 +83,9 @@ transition: transform .5s;
 
 .front-display{
     transform: rotateY(180deg);
+}
+
+#attempts{
+    font-size: 35px;
+    text-decoration: underline;
 }
