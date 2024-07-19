@@ -50,57 +50,86 @@
 /*-------------------------------- Constants --------------------------------*/
 
 /*---------------------------- Variables (state) ----------------------------*/
-let board = [];
 let attempts = 0;
+let lockBoard = false;
 let flippedCard = false;
-let firstCard 
-let secondCard 
+let firstCard;
+let secondCard;
 /*------------------------ Cached Element References ------------------------*/
 const startBtn = document.querySelector("#start");
 const resetBtn = document.querySelector("#reset");
 const attemptsMessageEl = document.querySelector("#attempts");
 const attemptsCountEl = document.querySelector("#attempts-count");
 const gameBoardEl = document.querySelector(".memory-game");
-const cardsEl = document.querySelectorAll(".memory-card"); 
+const cardsEl = document.querySelectorAll(".memory-card");
 const frontDisplay = document.querySelectorAll(".front-display");
-const flipDisplay = document.querySelectorAll(".back-display")
+const backDisplay = document.querySelectorAll(".back-display");
 /*-------------------------------- Functions --------------------------------*/
-function flipCard(){
-this.classList.add('flip');
+function flipCard() {
+  if (lockBoard) {
+    return;
+  }
+  if (this === firstCard) {
+    return;
+  }
+  this.classList.add("flip");
 
-if(!flippedCard){
+  if (!flippedCard) {
     flippedCard = true;
     firstCard = this;
-}else{
+  } else {
     flippedCard = false;
     secondCard = this;
 
     checkForMatchedPairs();
-}
+  }
 }
 
-function checkForMatchedPairs(){
-if (firstCard.dataset.players === secondCard.dataset.players) {
+function checkForMatchedPairs() {
+  if (firstCard.dataset.players === secondCard.dataset.players) {
+    firstCard.removeEventListener("click", flipCard);
+    secondCard.removeEventListener("click", flipCard);
+    disableCards();
+  } else {
+    unflippedCards();
+  }
+}
+
+function disableCards() {
   firstCard.removeEventListener("click", flipCard);
   secondCard.removeEventListener("click", flipCard);
-  disableCards()
-} else {
-  unflippedCards()
-}
+
+  resetBoard();
 }
 
-function disableCards(){
-  firstCard.removeEventListener("click", flipCard);
-  secondCard.removeEventListener("click", flipCard);
+function unflippedCards() {
+  lockBoard = true;
+  setTimeout(function () {
+    firstCard.classList.remove("flip");
+    secondCard.classList.remove("flip");
+
+    resetBoard();
+  }, 500);
 }
 
-function unflippedCards(){   
-setTimeout(function () {
-  firstCard.classList.remove("flip");
-  secondCard.classList.remove("flip");
-}, 1700);
+function resetBoard() {
+  flippedCard = false;
+  lockBoard = false;
+  firstCard = null;
+  secondCard = null;
+}
+
+function shuffle() {
+  cardsEl.forEach((card) => {
+    let shuffledDeck = Math.floor(Math.random() * 15);
+    card.style.order = shuffledDeck;
+  });
 }
 /*----------------------------- Event Listeners -----------------------------*/
-cardsEl.forEach((card)=>{
-    card.addEventListener("click", flipCard)
-})
+cardsEl.forEach((card) => {
+  card.addEventListener("click", flipCard);
+});
+
+resetBtn.addEventListener("click", shuffle);
+
+shuffle();
