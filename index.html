@@ -14,8 +14,18 @@
     <div class="container">
         <h1>Basketball Memory Match</h1>
         <h2 id="attempts">You have A Total Of 5 Attempts: <span id="attempts-count">0</span> </h2>
-        <h2 id="win-score">Score: 0</h2>
-        <h3 id="start">Start Game</h3>
+        <h2 id="win-score">0</h2>
+        <dialog id="instructions">
+            <h1>How to Play</h1>
+            <p>You Have 0 Attempts For The Game</p>
+            <p>You Have To Match 8 Different Pairs Of NBA Player Images</p>
+            <p>If You Match The Images Prior To Reaching Your Max Attempts, You Win!</p>
+            <p>If You Max Out Your Number Of Attempts Prior To Matching All 8 Pairs, You Lose!</p>
+            <!-- <button onclick="instructions.close()">✖</button> -->
+            <!-- <button onclick="instructions.showModal()" id="start">Start Game</button> -->
+            <button id="start">Start Game</button>
+        </dialog>
+        
         <section class="memory-game">
             <div class="memory-card" data-players="Jalen Brunson">
                 <img class="front-display" src="./assets/Jalen-Brunson.jpg" alt="Jalen Brunson">

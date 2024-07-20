@@ -61,10 +61,7 @@ const startBtn = document.querySelector("#start");
 const resetBtn = document.querySelector("#reset");
 const attemptsMessageEl = document.querySelector("#attempts");
 const attemptsCountEl = document.querySelector("#attempts-count");
-const gameBoardEl = document.querySelector(".memory-game");
 const cardsEl = document.querySelectorAll(".memory-card");
-const frontDisplay = document.querySelectorAll(".front-display");
-const backDisplay = document.querySelectorAll(".back-display");
 const winScore = document.querySelector("#win-score");
 /*-------------------------------- Functions --------------------------------*/
 function flipCard() {
@@ -94,9 +91,10 @@ function checkForMatchedPairs() {
     unflippedCards();
     attempts++
     attemptsCountEl.textContent = attempts;
-    if(attempts > 15){
+    if(attempts >= 9){
       attemptsMessageEl.textContent = "You Lose!!!!"
       attemptsMessageEl.style.fontSize = "40px"
+      winScore.textContent = "0"
        cardsEl.forEach((card) => {
          card.removeEventListener("click", flipCard);
        });
@@ -144,11 +142,15 @@ if (firstCard.dataset.players === secondCard.dataset.players) {
   firstCard.removeEventListener("click", flipCard);
   secondCard.removeEventListener("click", flipCard);
   score++;
-  if (score === 8) {
+  winScore.textContent = score;
+  if (score >= 8) {
     winScore.textContent = "You Win!!!!";
     winScore.style.fontSize = "40px";
+    attemptsCountEl.textContent = "0"
   }
+  
 }
+
 }
 
 /*----------------------------- Event Listeners -----------------------------*/
