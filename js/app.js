@@ -1,62 +1,3 @@
-//Setup initial variables and constants:
-
-//DECLARE board as an array
-//DECLARE turn as string
-//DECLARE attempts as integer
-//DECLARE matchedPairs as integer
-//DECLARE IMAGES as array of NBA player images
-//DECLARE TOTAL_PAIRS as integer equal to the number of pairs needed
-
-//Cache DOM elements:
-
-//DECLARE startButton
-//DECLARE resetButton
-//DECLARE attemptsMessageEl
-//DECLARE attemptsCountEl
-//DECLARE gameBoardEl
-//DECLARE cardEl
-
-//Event Listeners:
-
-//ADD event listener to startButton for click to startGame function
-//ADD event listener to resetButton to resetGame function
-//ADD event listener to each cardEl for click to handle card click function
-
-//Start Game Functionality:
-
-//Function startGame
-//Function initGame
-//Function loadImages
-//Function Random-Shuffle Images
-
-//Rendering the Game Board:
-//Function RenderBoard
-//Loop through board array
-
-//Handle Card Clicks & Matching Logic:
-
-//Conditionals to check IF card was clicked to flip card
-//Else do not flip card
-//Check for match
-
-//End Game & Reset Functionality:
-
-//Function End Game
-//check for winner
-//check for loser
-
-//Function Reset Game
-
-/*-------------------------------- Constants --------------------------------*/
-
-/*---------------------------- Variables (state) ----------------------------*/
-let score = 0;
-let attempts = 0;
-let lockBoard = false;
-let flippedCard = false;
-let firstCard;
-let secondCard;
-/*------------------------ Cached Element References ------------------------*/
 const startBtn = document.querySelector("#start");
 const resetBtn = document.querySelector("#reset");
 const attemptsMessageEl = document.querySelector("#attempts");
@@ -65,11 +6,20 @@ const cardsEl = document.querySelectorAll(".memory-card");
 const winScore = document.querySelector("#win-score");
 const howToPlay = document.querySelector("#instructions");
 const audioStartGame = new Audio("./audio/NBA_NBC_Theme_Song.mp3");
-const audioWin = new Audio("./audio/Anything_Is_Possible.mp3")
+const audioWin = new Audio("./audio/Anything_Is_Possible.mp3");
 const audioLose = new Audio("./audio/Buzzer_Loser.mp3");
 const audioRightMatch = new Audio("./audio/correct_Match.mp3");
 const audioWrongMatch = new Audio("./audio/H_N_KG.mp3");
-/*-------------------------------- Functions --------------------------------*/
+
+let score = 0;
+let attempts = 0;
+let lockBoard = false;
+let flippedCard = false;
+let firstCard;
+let secondCard;
+
+
+
 function flipCard() {
   if (lockBoard) {
     return;
@@ -79,37 +29,35 @@ function flipCard() {
   }
   this.classList.add("flip");
   if (!flippedCard) {
-    //first click
     flippedCard = true;
     firstCard = this;
   } else {
     flippedCard = false;
     secondCard = this;
     checkForMatchedPairs();
-    
   }
 }
 
 function checkForMatchedPairs() {
   if (firstCard.dataset.players === secondCard.dataset.players) {
-   audioRightMatch.play();
-    checkWin()
+    audioRightMatch.play();
+    checkWin();
   } else {
     unflippedCards();
-    attempts++
     audioWrongMatch.play();
+    attempts++;
     attemptsCountEl.textContent = attempts;
-    if(attempts >= 16){
-      attemptsMessageEl.textContent = "You Lose!!!!"
-      attemptsMessageEl.style.fontSize = "40px"
-      winScore.textContent = "0"
-       cardsEl.forEach((card) => {
-         card.removeEventListener("click", flipCard);
-       });
-       
-       setTimeout(function(){
-          audioLose.play();
-       }, 1500)
+    if (attempts >= 9) {
+      attemptsMessageEl.textContent = "YOU LOSE!!!!";
+      attemptsMessageEl.style.fontSize = "50px";
+      winScore.textContent = "0";
+      cardsEl.forEach((card) => {
+        card.removeEventListener("click", flipCard);
+      });
+
+      setTimeout(function () {
+        audioLose.play();
+      }, 1300);
     }
   }
 }
@@ -127,7 +75,7 @@ function unflippedCards() {
     firstCard.classList.remove("flip");
     secondCard.classList.remove("flip");
     resetBoard();
-  }, 500);
+  }, 1100);
 }
 
 function resetBoard() {
@@ -144,54 +92,50 @@ function shuffle() {
   });
 }
 
-function resetGame(){
-  // location.reload()
-  window.location.reload()
+function resetGame() {
+  window.location.reload();
 }
 
-function checkWin(){
-if (firstCard.dataset.players === secondCard.dataset.players) {
-  firstCard.removeEventListener("click", flipCard);
-  secondCard.removeEventListener("click", flipCard);
-  score++;
-  winScore.textContent = score;
-  if (score >= 8) {
-    winScore.textContent = "You Win!!!!";
-    winScore.style.fontSize = "40px";
-    attemptsCountEl.textContent = "0"
-    audioWin.play();
+function checkWin() {
+  if (firstCard.dataset.players === secondCard.dataset.players) {
+    firstCard.removeEventListener("click", flipCard);
+    secondCard.removeEventListener("click", flipCard);
+    score++;
+    winScore.textContent = score;
+    winScore.textContent = `Score: ${score}`;
+    winScore.style.fontSize = "35px";
+    if (score >= 8) {
+      winScore.textContent = "YOU WIN!!!!";
+      winScore.style.fontSize = "50px";
+      attemptsCountEl.textContent = "0";
+      setTimeout(function () {
+        audioWin.play();
+      }, 1000);
+    }
   }
-  
 }
 
-}
 
-/*----------------------------- Event Listeners -----------------------------*/
+
 cardsEl.forEach((card) => {
   card.addEventListener("click", flipCard);
-  
 });
-
 
 document.addEventListener("DOMContentLoaded", () => {
   audioStartGame.play();
   howToPlay.showModal();
-  resetBoard()
 });
 
-
-startBtn.addEventListener("click",()=>{
-  howToPlay.close()
+startBtn.addEventListener("click", () => {
+  howToPlay.close();
   audioStartGame.pause();
-})
+});
 
 resetBtn.addEventListener("click", resetGame);
 
-
 shuffle();
 
-
-
+//Referenced resources listed blow: 
 
 //https://www.youtube.com/shorts/VupSmMRb4x4?feature=share
 //https://www.youtube.com/watch?v=ZniVgo8U7ek
