@@ -56,10 +56,10 @@ h2 {
 .memory-card {
   width: calc(
     25% - 1px
-  ); /* referenced stack overflow and YT videos for the css calc property */
+  ); 
   height: calc(
     26% - 10px
-  ); /* referenced stack overflow and YT videos for the css calc property */
+  ); 
   position: relative;
   display: flex;
   flex-direction: column;

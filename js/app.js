@@ -18,8 +18,6 @@ let flippedCard = false;
 let firstCard;
 let secondCard;
 
-
-
 function flipCard() {
   if (lockBoard) {
     return;
@@ -115,8 +113,6 @@ function checkWin() {
   }
 }
 
-
-
 cardsEl.forEach((card) => {
   card.addEventListener("click", flipCard);
 });
@@ -135,8 +131,11 @@ resetBtn.addEventListener("click", resetGame);
 
 shuffle();
 
-//Referenced resources listed blow: 
+//Used videos as reference guide, along with google to create app:
 
 //https://www.youtube.com/shorts/VupSmMRb4x4?feature=share
 //https://www.youtube.com/watch?v=ZniVgo8U7ek
 //https://forum.freecodecamp.org/t/playing-local-mp3-file-in-visual-studio-code/451363
+
+//referenced stack overflow and YT videos for the css calc property 
+//referenced stack overflow and YT videos for the css calc property 
