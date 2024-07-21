@@ -63,6 +63,7 @@ const attemptsMessageEl = document.querySelector("#attempts");
 const attemptsCountEl = document.querySelector("#attempts-count");
 const cardsEl = document.querySelectorAll(".memory-card");
 const winScore = document.querySelector("#win-score");
+const howToPlay = document.querySelector("#instructions");
 /*-------------------------------- Functions --------------------------------*/
 function flipCard() {
   if (lockBoard) {
@@ -91,7 +92,7 @@ function checkForMatchedPairs() {
     unflippedCards();
     attempts++
     attemptsCountEl.textContent = attempts;
-    if(attempts >= 9){
+    if(attempts >= 6){
       attemptsMessageEl.textContent = "You Lose!!!!"
       attemptsMessageEl.style.fontSize = "40px"
       winScore.textContent = "0"
@@ -158,7 +159,21 @@ cardsEl.forEach((card) => {
   card.addEventListener("click", flipCard);
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  howToPlay.showModal();
+});
+
+
+startBtn.addEventListener("click",()=>{
+  howToPlay.close()
+  
+})
 
 resetBtn.addEventListener("click", resetGame);
 
+
 shuffle();
+
+
+//https://www.youtube.com/shorts/VupSmMRb4x4?feature=share
+//https://www.youtube.com/watch?v=ZniVgo8U7ek
