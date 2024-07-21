@@ -1,4 +1,4 @@
-# **Basket Memory Match Game** 🏀
+# **Basketball Memory Match** 🏀
 
 ![Sneak Peak of app](./assets/PictureReadMe1.png)
 
@@ -9,16 +9,16 @@ I created a  memory card matching game and personalized it for basketball fans! 
 
 - [Deployed Website](https://basketballmemorymatch.netlify.app)
 
-## Wire Frames
+## [Wire Frames](https://www.figma.com/design/PGgPDzxWPjLQFABNLHtuyt/Untitled?node-id=0-1&t=jxTj1FOPSg499RM0-0)
 
-![initailView](./assets/initialView.png)
+1. ![initailView](./assets/initialView.png)
 
-![winningView](./assets/winningView.png)
+2. ![winningView](./assets/winningView.png)
 
-![losingView](./assets/losingView.png)
+3. ![losingView](./assets/losingView.png)
 
 
-## Technologies used
+## Technologies Used
 
 - [✔] Javascript
 - [✔] HTML
@@ -26,7 +26,7 @@ I created a  memory card matching game and personalized it for basketball fans! 
 
 
 ## Stretch Goals
-> Establish a multiplayer state
->> Allow a game reset when refreshing the app in the browser
->>> Create difficulty round states and include a timer. ie: (Easy, Med, Hard Modes)
+> Establish a multiplayer state.
+>> Allow a game reset when refreshing the app in the browser.
+>>> Create difficulty rounds & states, and include a timer. ie: (Easy, Med, Hard)
 
