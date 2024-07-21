@@ -68,7 +68,7 @@ const audioStartGame = new Audio("./audio/NBA_NBC_Theme_Song.mp3");
 const audioWin = new Audio("./audio/Anything_Is_Possible.mp3")
 const audioLose = new Audio("./audio/Buzzer_Loser.mp3");
 const audioRightMatch = new Audio("./audio/correct_Match.mp3");
-const audioWrongMatch = new Audio("./audio/H_N_KG");
+const audioWrongMatch = new Audio("./audio/H_N_KG.mp3");
 /*-------------------------------- Functions --------------------------------*/
 function flipCard() {
   if (lockBoard) {
@@ -79,12 +79,12 @@ function flipCard() {
   }
   this.classList.add("flip");
   if (!flippedCard) {
+    //first click
     flippedCard = true;
     firstCard = this;
   } else {
     flippedCard = false;
     secondCard = this;
-
     checkForMatchedPairs();
     
   }
@@ -97,15 +97,19 @@ function checkForMatchedPairs() {
   } else {
     unflippedCards();
     attempts++
+    audioWrongMatch.play();
     attemptsCountEl.textContent = attempts;
-    if(attempts >= 8){
+    if(attempts >= 16){
       attemptsMessageEl.textContent = "You Lose!!!!"
       attemptsMessageEl.style.fontSize = "40px"
       winScore.textContent = "0"
        cardsEl.forEach((card) => {
          card.removeEventListener("click", flipCard);
        });
-       audioLose.play()
+       
+       setTimeout(function(){
+          audioLose.play();
+       }, 1500)
     }
   }
 }
@@ -172,7 +176,7 @@ cardsEl.forEach((card) => {
 document.addEventListener("DOMContentLoaded", () => {
   audioStartGame.play();
   howToPlay.showModal();
-  
+  resetBoard()
 });
 
 
