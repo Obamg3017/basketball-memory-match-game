@@ -10,13 +10,8 @@
 ### - [Deployed Website](https://basketballmemorymatch.netlify.app)
 
 ## [Wire Frames](https://www.figma.com/design/PGgPDzxWPjLQFABNLHtuyt/Untitled?node-id=0-1&t=jxTj1FOPSg499RM0-0)
-
-#### 1. ![initailView](./assets/initialView.png)
-
-#### 2. ![winningView](./assets/winningView.png)
-
-#### 3. ![losingView](./assets/losingView.png)
-
+![winningView](./assets/winningView.png)
+![losingView](./assets/losingView.png)
 
 ## Technologies Used
 
@@ -24,9 +19,8 @@
 ### - [✔] HTML
 ### - [✔] CSS
 
-
 ## Stretch Goals
-### > Establish a multiplayer state.
-### >> Allow a game reset when refreshing the app in the browser.
-### >>> Create difficulty rounds & states, and include a timer. ie: (Easy, Med, Hard)
+> ### Establish a multiplayer state.
+>> ### Allow a game reset when refreshing the app in the browser.
+>>> ### Create difficulty rounds & states, and include a timer. ie: (Easy, Med, Hard)
 
